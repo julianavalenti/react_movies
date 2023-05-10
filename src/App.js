@@ -13,17 +13,20 @@ function App() {
 
 //Function to get movie data
 
-const getMovie = async () => {
+const getMovie = async (searchTerm) => {
   const response = await fetch(
     `http://www.omdbapi.com/?apikey=${API_KEY}&t=${searchTerm}`
   )
   //parse JSON into js object
   const data = await response.json()
+  
+  setMovie(data)
 }
+
   return (
    <div className='App' >
-    <Form/>
-    <MovieDisplay/>
+    <Form getMovie = {getMovie}/>
+    <MovieDisplay movie={movie}/>
 
    </div>
   );
